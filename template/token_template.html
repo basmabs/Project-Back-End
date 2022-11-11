@@ -6,14 +6,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    p{
+      font-family: sans-serif;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    span{
+      font-weight: 700;
+      font-size: 24px;
+    }
+    a{
+      padding: 10px 30px;
+      color: white !important;
+      background-color: rgb(0, 166, 255);
+      border-radius: 10px;
+      text-decoration: none;
+      margin: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <p> hello <%= name %>, <br>
+  <p><span> Hello <%= name %></span>, <br>
   you requested to reset your account's password ,<br>
-click on reset link bellow ,<br>
-<a href="<%= link %>">reset</a></p>
+  click on reset link bellow </p>
+  <a href="<%= link %>">Reset Password</a>
+  <hr>
 </body>
-
 </html>

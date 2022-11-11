@@ -1,4 +1,4 @@
-const Company = require('../Models/Company_Model');
+const Company = require('../Models/Company_Auth_Model');
 const passport = require('passport');
 const bearerStrategy = require('passport-http-bearer').Strategy;
 const jwt = require('jsonwebtoken');

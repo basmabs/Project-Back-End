@@ -1,0 +1,10 @@
+const express = require('express');
+// const passport = require('passport');
+const { getEventbyid, getEvent, createEvent, deleteEvent, updateEvent } = require('../Controllers/Events');
+const router = express.Router();
+router.post('/createEvent', createEvent);
+router.get('/getEvent', getEvent);
+router.get('/getEventbyid/:idEvent', getEventbyid);
+router.put('/updateEvent/:idEvent', updateEvent);
+router.delete('/deleteEvent/:idEvent', deleteEvent);
+module.exports = router;

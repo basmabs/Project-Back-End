@@ -1,6 +1,5 @@
 const Company = require('../Models/Company_Auth_Model');
 const bcrypt = require('bcryptjs');
-
 exports.createCompany = async (req, res) => {
   try {
     const found = await Company.findOne({ email: req.body.email })
@@ -41,13 +40,6 @@ exports.getCompanybyid = async (req, res) => {
 exports.updateCompany = async (req, res) => {
   try {
     await Company.findByIdAndUpdate(req.params.idCompany, req.body)
-    // if (Company.password === ! '') {
-    //   const salt = bcrypt.genSaltSync(10)
-    //   const hash = bcrypt.hashSync(req.body.password, salt)
-    //   req.body.password = hash
-    // } else {
-    //   res.status(400).send({ message: 'password required' })
-    // }
     res.send({ message: 'Company is updated' })
   } catch (error) {
     res.status(500).send({ message: error.message || 'Server error' })

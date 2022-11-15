@@ -7,7 +7,7 @@ const Event = new Schema(
     photo: String,
     eventDate: { type: String, required: [true, `Event date is required`] },
     eventTime: { type: String, required: [`Event time is required`] },
-    // eventDuration: { type: String, required: [true, `Event duration is required`] },
+    eventDuration: { type: String, required: [true, `Event duration is required`] },
     eventType: { type: String, required: ['paid', `Event type is required`] },
     price: { type: Number, required: [true, 'Event price is required'] },
     photo: String,

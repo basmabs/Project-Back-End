@@ -25,7 +25,7 @@ exports.Register = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).send({ message: error.message ||  `Server error` })
+    res.status(500).send({ message: error.message || `Server error` })
   }
 };
 /**
@@ -42,34 +42,34 @@ exports.Login = async (req, res) => {
           ID_COMPANY: find._id
         }
         const token = jwt.sign(data, process.env.JWT_SECRET, { expiresIn: '1d' });
-        res.send({ token })
+        res.send({ message: 'Welcome to your dashboard', token: token })
       } else {
         res.status(400).send({ message: `Verify email or password` })
       }
-    }else{
+    } else {
       res.status(400).send({ message: `Verify email or password` })
     }
   } catch (error) {
-    res.status(500).send({ message: error.message ||  `Server error` })
+    res.status(500).send({ message: error.message || `Server error` })
   }
 };
 /**
  * Forgot Password With Sending Email link  of Reset 
- *  */ 
+ *  */
 exports.forgetPassword = async (req, res) => {
   try {//find= company info
     const find = await Company.findOne({ email: req.body.email })
     if (!find) {
-      res.status(400).send({ message: `Company does not exist` })
+      res.status(400).send({ message: `does not exist` })
     } else {
       //delete former code if exist ,and get a new one 
       const token = await Token.findOne({ companyId: find._id })
       if (token) {
         await token.deleteOne()
       }
-  /**
-   * Generate Token Of Reset password
-   */
+      /**
+       * Generate Token Of Reset password
+       */
       const resetToken = randomstring.generate(15)//
       await Token.create({
         companyId: find._id,

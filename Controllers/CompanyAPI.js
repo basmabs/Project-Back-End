@@ -27,7 +27,7 @@ exports.getCompany = async (req, res) => {
 };
 exports.getCompanybyid = async (req, res) => {
   try {
-    const company = await Company.findById(req.params.idCompany)
+    const company = await Company.findById(req.params.idCompany, { password: 0 })
     if (company) {
       res.send(company)
     } else {
@@ -39,6 +39,11 @@ exports.getCompanybyid = async (req, res) => {
 };
 exports.updateCompany = async (req, res) => {
   try {
+    if (req.body.password) {
+      const salt = bcrypt.genSaltSync(10)
+      const hash = await bcrypt.hashSync(req.body.password, salt)
+      req.body.password = hash
+    }
     await Company.findByIdAndUpdate(req.params.idCompany, req.body)
     res.send({ message: 'Company is updated' })
   } catch (error) {

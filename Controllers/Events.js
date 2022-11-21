@@ -2,7 +2,7 @@ const Event = require('../Models/Events_Model');
 exports.createEvent = async (req, res) => {
   try {
     await Event.create(req.body)
-    res.status(201).send({ message: 'event is created' })
+    res.send({ message: 'event is created' })
   } catch (error) {
     res.status(500).send({ message: 'server error' })
   }
@@ -12,7 +12,7 @@ exports.getEvent = async (req, res) => {
     const events = await Event.find()
     res.send(events)
   } catch (error) {
-    res.status(500).send({ message: error.message || 'Server error' })
+    res.status(500).send({ message: error.message || `Server error` })
   }
 };
 exports.getEventbyid = async (req, res) => {
@@ -33,7 +33,6 @@ exports.updateEvent = async (req, res) => {
     res.send({ message: 'event is updated' })
   } catch (error) {
     res.status(500).send({ message: error.message || 'Server error' })
-    console.log(error)
   }
 };
 exports.deleteEvent = async (req, res) => {

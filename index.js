@@ -19,7 +19,7 @@ app.use(cors({
   credentials: true,            //access-control-allow-credentials:true
   optionSuccessStatus: 200
 }));
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(require('express-session')({ secret: process.env.JWT_SECRET, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());

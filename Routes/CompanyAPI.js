@@ -1,11 +1,10 @@
 const express = require('express');
-// const passport = require('passport');
+const passport = require('passport');
 const { createCompany, getCompany, getCompanybyid, deleteCompany, updateCompany } = require('../Controllers/CompanyAPI');
 const router = express.Router();
-router.post('/createCompany', createCompany);
-router.get('/getCompany',getCompany);
-router.get('/getCompanybyid/:idCompany', getCompanybyid);
-router.put('/updateCompany/:idCompany', updateCompany);
-router.delete('/deleteCompany/:idCompany', deleteCompany);
+router.post('/createCompany', passport.authenticate('bearer', { session: false }), createCompany);
+router.get('/getCompany', passport.authenticate('bearer', { session: false }), getCompany);
+router.get('/getCompanybyid/:idCompany', passport.authenticate('bearer', { session: false }), getCompanybyid);
+router.put('/updateCompany/:idCompany', passport.authenticate('bearer', { session: false }), updateCompany);
+router.delete('/deleteCompany/:idCompany', passport.authenticate('bearer', { session: false }), deleteCompany);
 module.exports = router;
-// passport.authenticate('bearer', { session: false }),

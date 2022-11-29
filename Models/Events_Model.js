@@ -10,6 +10,8 @@ const Event = new Schema(
     eventDuration: { type: String, required: [true, `Event duration is required`] },
     eventType: { type: String, required: ['paid', `Event type is required`] },
     price: { type: Number, required: [true, 'Event price is required'] },
+    location: { type: String, required: [true, 'Event location is required'] },
+    ticketNumber: { type: Number, required: [true, 'Event ticket number is required'] },
     photo: String,
     events: [{ type: Schema.Types.ObjectId, ref: 'event' }]
   },

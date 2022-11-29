@@ -1,7 +1,9 @@
+const Company_Auth_Model = require('../Models/Company_Auth_Model');
 const Event = require('../Models/Events_Model');
 exports.createEvent = async (req, res) => {
   try {
-    await Event.create(req.body)
+    const event = await Event.create(req.body)
+    await Company_Auth_Model.findByIdAndUpdate(req.user._id, { $push: { events: event._id } }, { new: true })
     res.send({ message: 'event is created' })
   } catch (error) {
     res.status(500).send({ message: 'server error' })
@@ -18,11 +20,7 @@ exports.getEvent = async (req, res) => {
 exports.getEventbyid = async (req, res) => {
   try {
     const event = await Event.findById(req.params.idEvent)
-    if (event) {
-      res.send(event)
-    } else {
-      res.status(400).send({ message: 'Event is not found' })
-    }
+    res.send(event)
   } catch (error) {
     res.status(500).send({ message: error.message || 'Server error' })
   }

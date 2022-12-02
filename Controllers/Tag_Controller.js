@@ -43,3 +43,17 @@ exports.deleteTag = async (req, res) => {
     res.status(500).send({ message: error.message || `server error` })
   }
 };
+exports.getTagsForEvents = async (req, res) => {
+  try {
+    const tag = await Tag.find()
+    let newTags = [];
+    tag.map((t) => {
+      newTags.push({
+        label: t.title, value: t._id
+      })
+    })
+    res.send(newTags)
+  } catch (error) {
+    res.status(500).send({ message: error.message || 'server error' })
+  }
+};

@@ -124,3 +124,12 @@ exports.resetPassword = async (req, res) => {
     res.status(500).send({ message: error.message || `Server error` })
   }
 };
+
+exports.logoutSession = async (req,res,next)=>{
+  req.logout((err)=>{
+    if(err){
+      return next(err)
+    }
+    res.json({message:'Disconnected successfully'})
+  })
+}

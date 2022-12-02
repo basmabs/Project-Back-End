@@ -7,7 +7,7 @@ const Company = new Schema(
     email: { type: String, required: [true, 'Email is required'] },
     password: { type: String, required: [true, 'Password is required'] },
     role: { type: String, default: 'Admin' },
-    photo: { type: String, default: 'https://imgur.com/1wf5EZR.png' },
+    photo: { type: String, default: 'https://imgur.com/e5PnZbW.png' },
     events: [{ type: Schema.Types.ObjectId, ref: 'event' }]
   },
   {

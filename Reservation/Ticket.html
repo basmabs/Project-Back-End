@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Ticket</title>
   <style>
     p {
       color: black;
@@ -18,51 +18,111 @@
       font-family: monospace;
       color: red;
       text-align: center;
+      margin-top: 50px;
+      margin-bottom: 20px;
       font-size: 50px;
-      margin-bottom: 20px
-    }
 
+    }
+.h1{
+  margin-left: auto;
+      margin-right: auto;
+}
     img {
       margin-left: auto;
       margin-right: auto;
-      width: 20%;
+      width: 500px;
+      height: 500px;
       display: block;
-    }
-
-    h4 {
-      font-style: italic;
-      margin-top: 50px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 50px;
-      font-size: 50px;
-      text-align: center;
+      margin-top: 160px;
       border-width: 5px;
       border-style: solid;
       border-color: black;
-      background-color: rgb(209, 216, 229);
-      width: 600px;
-      height: auto;
+    }
 
+    .content {
+      margin-top: 30px;
+      margin-left: 180px;
+      margin-right: auto;
+      margin-bottom: 50px;
+      font-style: italic;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: small;
+      text-align: start;
+      border-width: 5px;
+      border-style: solid;
+      border-color: black;
+      width: 500px;
+      height: auto;
+      text-align: left;
+
+    }
+
+    .split {
+      height: 900px;
+      width: 1000px;
+      position: fixed;
+      z-index: 1;
+      top: 250px;
+      overflow-x: hidden;
+      /* padding-top: 250px; */
+      justify-content: center;
+    }
+
+    .left {
+      left: 0;
+      /* background-color: beige; */
+
+    }
+
+    .right {
+      right: 0;
+      /* background-color: beige; */
+    }
+
+    .blue {
+      background: rgb(58, 129, 180);
+
+    }
+
+    .greeting {
+      margin-top: 950px;
+      background-color: rgb(99, 151, 180);
+      font-size: large;
+      height: 120px;
+    }
+
+    .centered {
+   margin-top: 50px;
     }
   </style>
 </head>
 
 <body>
-  <p>Hello <%= data.firstName %>,<br> you've bought an event ticket from our website.<br> Please scan the following
-      Ticket code. Thank you.</p>
-  <h1>
-    <%= data.eventName %>
-  </h1>
-  <h4>Details :
-    <hr />
-    Time: <%= data.eventTime %><br />
-      Date: <%= data.eventDate %><br />
-        Price: <%= data.price %><br />
-          Location: <%= data.location %>
-            <hr />
-  </h4>
-  <img alt="" src="<%= qrcodeLink %>" />
+  <div class="row blue">
+    <p>Hello <%= data.firstName %>,<br> you've bought an event ticket from our website.<br> Please scan the following
+        Ticket code.</p>
+  </div>
+  <div class="split left">
+    <div class="centered">
+      <div class="content">
+        <h1 class="h1"><%= data.eventName %></h1>
+        <h1>Details : </h1>
+        <hr />
+        <p>Time: <%= data.eventTime %></p>
+        <p>Date: <%= data.eventDate %><p>
+        <p>Price: <%= data.price %></p>
+        <p>Location: <%= data.location %></p>
+      </div>
+      <div class="split right">
+        <div class="centered">
+          <img alt="qrcode" src="<%= qrcodeLink %>" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row greeting">
+    <p>Thank you.</p>
+  </div>
 </body>
 
 </html>

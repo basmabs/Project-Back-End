@@ -20,8 +20,8 @@ exports.createReservation = async (req, res) => {
       location: `${event.location}`
     }
     const qrcodeLink = `http://localhost:4000/qrcodes/${reservation._id}.png` // const to make qrcode's img readable in gmail
-    await QRCode.toFile(path.resolve(`./qrcodes/${reservation._id}.png`), JSON.stringify(dataEvent))//Creating a qrcode with the dataEvent object and saving it in the qrcodes folder.
-
+    //Creating a qrcode with the dataEvent object and saving it in the qrcodes folder.
+    await QRCode.toFile(path.resolve(`./qrcodes/${reservation._id}.png`), JSON.stringify(dataEvent))
     /* Reading the html file and saving it in a variable. */
     var html = fs.readFileSync('Reservation/Ticket.html', 'utf8');
     const render = ejs.render(html, { data: dataEvent, qrcodeLink: qrcodeLink }) //post it in html <%= qrcodeLink %>
